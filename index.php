@@ -1,4 +1,5 @@
 <?php @include('connect.php'); ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,12 +12,24 @@
         <header class="row bg-secondary py-3">
             <div class="col align-self-center fs-1 fw-bold text-light"><?php echo $siteName ?></div>
             <div class="col-auto align-self-center">
-                <a href="sign-up.php">
-                    <button type="button" class="btn btn-outline-light">Sign up</button>
-                </a>
-                <a href="login.php">
-                    <button type="button" class="btn btn-light">Login</button>
-                </a>
+                <?php 
+                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                        echo '
+                        <a href="post.php">
+                            <button type="button" class="btn btn-primary">Post</button>
+                        </a>
+                        ';
+                    } else {
+                        echo '
+                        <a href="sign-up.php">
+                            <button type="button" class="btn btn-outline-light">Sign up</button>
+                        </a>
+                        <a href="login.php">
+                            <button type="button" class="btn btn-light">Login</button>
+                        </a>
+                        ';
+                    }
+                ?>
             </div>
         </header>
         <div class="row">
